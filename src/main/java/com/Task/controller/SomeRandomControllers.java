@@ -17,7 +17,7 @@ public class SomeRandomControllers {
     public ResponseEntity<Object> secondEndpoint() {
         return new ResponseEntity<>("Some random data from the second endpoint!", HttpStatus.OK);
     }
-    @RequestMapping(value = "/endpoint/third")
+    @RequestMapping(value = "/third")
     public ResponseEntity<Object> thirdEndpoint() {
         return new ResponseEntity<>("Some random data from the third endpoint!", HttpStatus.OK);
     }
