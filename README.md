@@ -1,16 +1,16 @@
 # spring-interceptors
 A Simple spring boot application to work with interceptors
 
-1- The application has THREE endpoints which return nothing.
-2- There is an interceptor that counts the number of requests that are sent to the first and the second endpoints together.
-3- There is a thread that acts like a stopwatch to reset the number of requests within a minute.
-4- The interceptor checks if the number of the requests reaches 10 then each request that comes within that minute will be delayed 10 seconds to achieve throttling.
-5- The maximum throttling period, the delay duration and the maximum number of requests is added to the application properties file.
-6- The third endpoint will never get affected.
+1. The application has **THREE** endpoints which return nothing.
+2. There is an interceptor that counts the number of requests that are sent to the first and the second endpoints together.
+3. There is a thread that acts like a stopwatch to reset the number of requests within a minute.
+4. The interceptor checks if the number of the requests reaches 10 then each request that comes within that minute will be delayed 10 seconds to achieve throttling.
+5. The maximum throttling period, the delay duration and the maximum number of requests is added to the application properties file.
+6. The third endpoint will never get affected.
 
-stress results:
+## stress results:
 
-Without throttling on /third endpoint:
+#### Without throttling on /third endpoint:
 
 
 
@@ -20,7 +20,7 @@ Without throttling on /third endpoint:
 
 
 
-With throttling on /endpoint/first and /endpoint/second
+#### With throttling on /endpoint/first and /endpoint/second
 
 
 
