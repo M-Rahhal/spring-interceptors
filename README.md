@@ -12,6 +12,16 @@ stress results:
 
 Without throttling on /third endpoint:
 
+
+
+
 ![without throttling](https://user-images.githubusercontent.com/99293726/229205839-36da045a-67c3-45a5-b738-75c9a893dfb0.jpeg)
 
+
+
+
 With throttling on /endpoint/first and /endpoint/second
+
+
+
+![with throttling](https://user-images.githubusercontent.com/99293726/229206033-a5cad9b9-8401-4c68-b113-cc199bf1cfc8.jpeg)
