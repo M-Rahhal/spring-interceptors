@@ -3,24 +3,29 @@ package com.Task.interceptor;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Slf4j
 @Component
+@ConfigurationProperties(prefix = "interceptor")
 public class RequestsCounterInterceptor implements HandlerInterceptor {
 
     private static int numOfRequests;
-    private static long delayTime;
+    private static long maxThrottlingPeriod;
+    private static long delayDuration;
+    private static int maxNumOfRequests;
+
 
 
     static {
-        Runnable task = new Runnable() {
+        Runnable timer = new Runnable() {
             @Override
             public void run() {
-                while (delayTime == 0) {
+                while (true) {
                     try {
-                        Thread.sleep(60000);
+                        Thread.sleep(maxThrottlingPeriod);
                         resetNumOfRequests();
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
@@ -28,26 +33,20 @@ public class RequestsCounterInterceptor implements HandlerInterceptor {
                 }
             }
         };
-        Thread thread = new Thread(task);
+        Thread thread = new Thread(timer);
         thread.start();
     }
+
 
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-
-        String uri = request.getRequestURI();
-        if (uri.contains("third"))
-            return true;
-
-
         incrementNumOfRequests();
-        log.info("[number of requests within a minuit -> "+numOfRequests+"] / [delay duration -> "+delayTime+"]");
-        if (getNumOfRequests()>=10)
-            setDelayTime(10000);
-
-        Thread.sleep(delayTime);
+        if (getNumOfRequests()>=maxNumOfRequests){
+            log.info("more delay is added on this request to achieve throttling");
+            Thread.sleep(delayDuration);
+        }
         return true;
     }
 
@@ -61,7 +60,32 @@ public class RequestsCounterInterceptor implements HandlerInterceptor {
     private static synchronized void resetNumOfRequests(){
         numOfRequests = 0;
     }
-    private static synchronized void setDelayTime(long delayTime){
-        RequestsCounterInterceptor.delayTime = delayTime;
+
+
+    public long getMaxThrottlingPeriod() {
+        return maxThrottlingPeriod;
     }
+
+    public void setMaxThrottlingPeriod(int maxThrottlingPeriod) {
+        this.maxThrottlingPeriod = maxThrottlingPeriod;
+    }
+
+    public long getDelayDuration() {
+        return delayDuration;
+    }
+
+    public void setDelayDuration(int delayDuration) {
+        this.delayDuration = delayDuration;
+    }
+
+    public int getMaxNumOfRequests() {
+        return maxNumOfRequests;
+    }
+
+    public void setMaxNumOfRequests(int maxNumOfRequests) {
+        this.maxNumOfRequests = maxNumOfRequests;
+    }
+
+
+
 }
