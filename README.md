@@ -14,14 +14,12 @@ A Simple spring boot application to work with interceptors
 
 
 
-
-![without throttling]()
-<img src="https://user-images.githubusercontent.com/99293726/229205839-36da045a-67c3-45a5-b738-75c9a893dfb0.jpeg" width="200" height="100">
+<img src="https://user-images.githubusercontent.com/99293726/229205839-36da045a-67c3-45a5-b738-75c9a893dfb0.jpeg" width="300px" height="300px">
 
 
 
 #### With throttling on /endpoint/first and /endpoint/second
 
 
+<img src="https://user-images.githubusercontent.com/99293726/229206033-a5cad9b9-8401-4c68-b113-cc199bf1cfc8.jpeg" width="300px" height="300px">
 
-![with throttling](https://user-images.githubusercontent.com/99293726/229206033-a5cad9b9-8401-4c68-b113-cc199bf1cfc8.jpeg)
