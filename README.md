@@ -15,8 +15,8 @@ A Simple spring boot application to work with interceptors
 
 
 
-![without throttling](https://user-images.githubusercontent.com/99293726/229205839-36da045a-67c3-45a5-b738-75c9a893dfb0.jpeg)
-
+![without throttling]()
+<img src="https://user-images.githubusercontent.com/99293726/229205839-36da045a-67c3-45a5-b738-75c9a893dfb0.jpeg" width="200" height="100">
 
 
 
